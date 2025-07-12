@@ -2,10 +2,10 @@ package com.example.taskmaster.entity;
 
 import jakarta.persistence.*;
 
-import com.example.taskmaster.entity.Status;
-
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "task")
@@ -33,6 +33,9 @@ public class Task {
         this.status = status;
         this.dueDate = dueDate;
     }
+
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -74,14 +77,23 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+
     @Override
     public String toString() {
-        return "com.example.taskmaster.entity.Task{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
+        return "Task{" +
+                "dueDate=" + dueDate +
                 ", status=" + status +
-                ", dueDate=" + dueDate +
+                ", description='" + description + '\'' +
+                ", title='" + title + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

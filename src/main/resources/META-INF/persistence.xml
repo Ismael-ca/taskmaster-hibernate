@@ -2,6 +2,7 @@
     <persistence-unit name="taskmasterPU">
         <class>com.example.taskmaster.entity.Task</class>
         <class>com.example.taskmaster.entity.Status</class>
+        <class>com.example.taskmaster.entity.Comment</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
